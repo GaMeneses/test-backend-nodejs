@@ -1,11 +1,12 @@
 const request = require('supertest');
-const app = require('../index');
+const app = require('../server');
 
 
-TestInsertProduct('insert Product', async() => {
-    const response = await supertest(app)
-        .post('/product').send({ title: "test 1", description: "desc 1", price: "price test", category: "category test" });
+describe('post Product', () => {
 
-    expect(response.statusCode).toEqual(201);
-
-})
+    it('test post product', async() => {
+        await request(app).post('/product')
+            .send({ title: 'test', description: 'teste desc', price: 'teste 10', category: 'teste' })
+            .expect(201)
+    })
+});
