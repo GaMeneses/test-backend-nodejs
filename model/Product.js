@@ -59,10 +59,23 @@ const getNameCategory = async({ name, category }) => {
 // Atualiza a Categoria dado o ID do produto
 const update = async(id, body) => {
     try {
-
         const db = await conn();
 
         const result = await db.collection('product').updateOne({ _id: ObjectId(id) }, { $set: { categoria: body.categoria } });
+        return result;
+
+    } catch (error) {
+        console.log(error);
+        return error = { "Error": "wrong update product" };
+    }
+}
+
+// Atualiza o produto dado o ID
+const updateProduct = async(id, body) => {
+    try {
+
+        const db = await conn();
+        const result = await db.collection('product').updateOne({ _id: ObjectId(id) }, { $set: body });
         return result;
 
     } catch (error) {
@@ -84,4 +97,4 @@ const Delete = async(id) => {
     }
 }
 
-module.exports = { insert, getAll, getId, update, Delete, getNameCategory };
+module.exports = { insert, getAll, getId, update, Delete, getNameCategory, updateProduct };
