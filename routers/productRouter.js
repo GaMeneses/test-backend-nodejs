@@ -2,6 +2,7 @@ const express = require('express');
 const product = require('../controller/productController')
 const router = express.Router();
 
+router.put('/filter', product.updateProduct);
 router.get('/filter', product.getNameCategory);
 router.get('/', product.getAll); // Rota para obter todos produtos
 router.post('/', product.add); // Rota para adicionar um produto
