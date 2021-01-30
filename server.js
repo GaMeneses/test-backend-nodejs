@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 app.get('/', (req, res) => res.json({
-    produto: '/product'
+    product: '/product'
 }));
 
 app.use('/product', product);
